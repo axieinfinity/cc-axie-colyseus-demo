@@ -1,6 +1,8 @@
+import { Dispatcher } from '@colyseus/command';
 import { Client, Room } from '@colyseus/core';
-import { GameRoomState, PlayerState, Projectile } from './schema/GameRoomState';
 import { GamePhase } from './GamePhases';
+import { CmdFire, CmdStartMove, CmdStopMove } from './commands/GameRoomCmd';
+import { GameRoomState, PlayerState } from './schema/GameRoomState';
 
 export const GameRoomConfig = {
     MOVE_SPEED: 150,
@@ -13,6 +15,7 @@ export const GameRoomConfig = {
 }
 
 export class GameRoom extends Room<GameRoomState> {
+    dispatcher = new Dispatcher(this);
 
     onCreate(options: any) {
         this.maxClients = GameRoomConfig.MAX_PLAYER;
@@ -35,7 +38,6 @@ export class GameRoom extends Room<GameRoomState> {
             faceDirection: 1,
             isMoving: false,
         });
-        console.log('New player spawned', newPlayer.toJSON());
         this.state.players.push(newPlayer);
 
         //trigger first turn if there is 2 players
@@ -43,7 +45,6 @@ export class GameRoom extends Room<GameRoomState> {
             this.lock();
             this.state.phase = GamePhase.INGAME;
             this.enterTurn(0);
-            console.log('enter turn');
         }
     }
 
@@ -58,48 +59,25 @@ export class GameRoom extends Room<GameRoomState> {
     }
 
     handleStartMoveMsg(client: Client, msg: any) {
-        console.log('Handle start move', msg);
-        let direction = msg.direction;
-        if (direction !== 1 && direction !== -1) return;
-
-        let playerIndex = this.state.players.findIndex(player => player.sessionId == client.sessionId);
-        if (playerIndex != this.state.currTurn) return;
-
-        let player = this.state.players[playerIndex];
-        player.faceDirection = direction;
-        player.isMoving = true;
+        this.dispatcher.dispatch(new CmdStartMove(), {
+            client: client,
+            direction: msg.direction
+        });
     }
 
     handleStopMoveMsg(client: Client, msg: any) {
-        console.log('Handle stop move');
-        let playerIndex = this.state.players.findIndex(player => player.sessionId == client.sessionId);
-        if (playerIndex != this.state.currTurn) return;
-
-        let player = this.state.players[playerIndex];
-        player.isMoving = false;
+        this.dispatcher.dispatch(new CmdStopMove(), {
+            client: client,
+        });
     }
 
 
     handleFireMsg(client: Client, msg: any) {
-        let degAngle = msg.angle;
-        if (degAngle < 0) degAngle += 180;
-        let powerRatio = msg.powerRatio;
-
-        if (isNaN(powerRatio) || isNaN(degAngle)) return;
-        if (this.state.projectile != null) return;
-
-        let playerIndex = this.state.players.findIndex(player => player.sessionId == client.sessionId);
-        if (playerIndex != this.state.currTurn) return;
-
-        let player = this.state.players[playerIndex];
-        let radAngle = Math.PI * degAngle / 180;
-        let newProjectile = new Projectile().assign({
-            x: player.x,
-            y: 0,
-            vx: Math.cos(radAngle) * powerRatio * GameRoomConfig.POWER_BASE,
-            vy: Math.sin(radAngle) * powerRatio * GameRoomConfig.POWER_BASE
+        this.dispatcher.dispatch(new CmdFire(), {
+            client: client,
+            degAngle: msg.angle,
+            powerRatio: msg.powerRatio
         });
-        this.state.projectile = newProjectile;
     }
 
     update(msDt: number) {
@@ -135,7 +113,6 @@ export class GameRoom extends Room<GameRoomState> {
             if (playingPlayerState.isMoving) {
                 let offset = GameRoomConfig.MOVE_SPEED * playingPlayerState.faceDirection * secDt;
                 playingPlayerState.x += offset;
-                console.log('move player', offset, secDt);
             }
 
             // reduce time countdown -> change turn if timeout
