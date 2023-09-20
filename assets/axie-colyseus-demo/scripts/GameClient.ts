@@ -16,6 +16,7 @@ export class GameClient extends Component {
     @property(Label) labelCurrTurn: Label = null!;
     @property(ProgressBar) pbPowerRatio: ProgressBar = null!;
     @property(Node) meIndicator: Node = null!;
+    @property(Node) oppIndicator: Node = null!;
     @property speedStakePower: number = 0.2!;
     @property(Node) panelEnd: Node = null!;
     @property(Label) labelEnd: Label = null!;
@@ -212,6 +213,9 @@ export class GameClient extends Component {
         axie.node.setPosition(x, 0, 0);
         if (index == this.myIndex) {
             this.meIndicator.setPosition(x, 0, 0);
+        }
+        else {
+            this.oppIndicatorgit.setPosition(x, 0, 0);
         }
     }
 
