@@ -25,8 +25,8 @@ export class GameClient extends Component {
     room: Colyseus.Room = null;
 
     powerRatio: number = 0;
-    isStakingPower: boolean = true;
-    allowStakingPower: boolean = true;
+    isStakingPower: boolean = false;
+    allowStakingPower: boolean = false;
     myFaceDirection: number = 1;
     myIndex: number = 1;
 
