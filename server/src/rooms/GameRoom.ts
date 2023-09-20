@@ -19,6 +19,7 @@ export class GameRoom extends Room<GameRoomState> {
 
     onCreate(options: any) {
         this.maxClients = GameRoomConfig.MAX_PLAYER;
+        this.setPatchRate(16); //ensure 60fps
         this.setState(new GameRoomState());
 
         this.onMessage('start-move', this.handleStartMoveMsg.bind(this));

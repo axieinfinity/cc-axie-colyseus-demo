@@ -301,7 +301,7 @@
     "_prefab": null,
     "_lpos": {
       "__type__": "cc.Vec3",
-      "x": 960,
+      "x": 959.9999999999998,
       "y": 540,
       "z": 0
     },
@@ -865,7 +865,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1920.0000000000002,
+      "width": 1919.9999999999998,
       "height": 48
     },
     "_anchorPoint": {
@@ -1202,7 +1202,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1920.0000000000002,
+      "width": 1919.9999999999998,
       "height": 1080
     },
     "_anchorPoint": {
@@ -1747,7 +1747,7 @@
     "__prefab": null,
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 1920.0000000000002,
+      "width": 1919.9999999999998,
       "height": 1080
     },
     "_anchorPoint": {
@@ -1833,8 +1833,8 @@
     "__prefab": null,
     "_alignFlags": 45,
     "_target": null,
-    "_left": -5.684341886080802e-14,
-    "_right": -5.684341886080802e-14,
+    "_left": -1.7053025658242404e-13,
+    "_right": -1.7053025658242404e-13,
     "_top": 5.684341886080802e-14,
     "_bottom": 5.684341886080802e-14,
     "_horizontalCenter": 0,
@@ -2164,7 +2164,7 @@
     },
     "_premultipliedAlpha": true,
     "defaultSkin": "default",
-    "defaultAnimation": "action/idle/normal",
+    "defaultAnimation": "",
     "_enableBatch": false,
     "_sockets": [],
     "_debugMesh": false,
@@ -2271,7 +2271,7 @@
     },
     "_premultipliedAlpha": true,
     "defaultSkin": "default",
-    "defaultAnimation": "action/idle/normal",
+    "defaultAnimation": "",
     "_enableBatch": false,
     "_sockets": [],
     "_debugMesh": false,
