@@ -215,7 +215,7 @@ export class GameClient extends Component {
             this.meIndicator.setPosition(x, 0, 0);
         }
         else {
-            this.oppIndicatorgit.setPosition(x, 0, 0);
+            this.oppIndicator.setPosition(x, 0, 0);
         }
     }
 
