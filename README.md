@@ -1,5 +1,9 @@
+![Game scene](assets/readme/logo.png)
+
 # Bring Axie into Colyseus multiplayer game
 This is an example Axie artillery game with Cocos Creator and Colyseus
+
+![Game scene](assets/readme/img_1.png)
 
 # Requirements
 - Cocos Creator 3.7.1 (or higher)
