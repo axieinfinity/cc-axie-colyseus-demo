@@ -109,6 +109,14 @@ export class GameClient extends Component {
         }
     }
 
+    onClickRetry() {
+      // disconnect from previous room
+      this.room?.leave();
+
+      // connect to new room
+      this.connect();
+    }
+
     onStateChange(state: any) {
         let projectileState = state.projectile;
         if (!projectileState) {
