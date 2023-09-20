@@ -90,11 +90,11 @@ export class GameClient extends Component {
                 else if (value == GamePhase.ENDED) {
                     this.panelEnd.active = true;
                     let winnerSessionId = this.room.state.winner;
-                    this.labelEnd.string = winnerSessionId == this.room.sessionId ? "You win" : "You lose";
+                    this.labelEnd.string = winnerSessionId == this.room.sessionId ? "YOU WIN" : "YOU LOSE";
                 }
                 else if (value == GamePhase.DRAW) {
                     this.panelEnd.active = true;
-                    this.labelEnd.string = "Game Draw";
+                    this.labelEnd.string = "GAME DRAW";
                 }
             });
             this.room.onStateChange(this.onStateChange.bind(this));
@@ -120,7 +120,6 @@ export class GameClient extends Component {
     }
 
     onKeyDown(e: EventKeyboard) {
-        console.log('keydown', e.keyCode);
         if (e.keyCode == KeyCode.KEY_A || e.keyCode == KeyCode.ARROW_LEFT) {
             if (this.myMoveDirection == 1) this.myMoveDirection = 0;
             else this.myMoveDirection = -1;
@@ -136,7 +135,6 @@ export class GameClient extends Component {
     }
 
     onKeyUp(e: EventKeyboard) {
-        console.log('keyup', e.keyCode);
         if (e.keyCode == KeyCode.KEY_A || e.keyCode == KeyCode.ARROW_LEFT) {
             if (this.myMoveDirection == -1) this.myMoveDirection = 0;
         }
@@ -155,21 +153,16 @@ export class GameClient extends Component {
     }
 
     requestStartMove(direction: number) {
-        console.log('start move', {
-            direction: direction
-        });
         this.room?.send('start-move', {
             direction: direction
         });
     }
 
     requestStopMove() {
-        console.log('stop move');
         this.room?.send('stop-move');
     }
 
     requestFire(angle: number, powerRatio: number) {
-        console.log("angle", angle, "power ratio", powerRatio);
         this.room?.send('fire', {
             angle: angle,
             powerRatio: powerRatio,

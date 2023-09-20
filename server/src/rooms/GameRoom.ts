@@ -5,12 +5,11 @@ import { GamePhase } from './GamePhases';
 export const GameRoomConfig = {
     MOVE_SPEED: 150,
     FIELD_WIDTH: 1800,
-    NUM_AXIE_VIEW: 16,
     TIME_PER_TURN: 20,
     MAX_PLAYER: 2,
     GRAVITY: 1000,
-    POWER_BASE: 3000,
-    HIT_RADIUS: 100,
+    POWER_BASE: 2000,
+    HIT_RADIUS: 80,
 }
 
 export class GameRoom extends Room<GameRoomState> {
