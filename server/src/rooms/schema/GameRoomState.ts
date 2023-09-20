@@ -24,8 +24,6 @@ export class GameRoomState extends Schema {
     @type(Projectile) projectile: Projectile = null;
     @type([PlayerState]) players: ArraySchema<PlayerState> = new ArraySchema<PlayerState>();
 
-    @type('number') wind: number = 0;
-
     @type('number') secondsLeft: number = 0;
     @type('number') currTurn: number = 0;
 

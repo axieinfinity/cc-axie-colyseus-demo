@@ -90,7 +90,6 @@ export class GameRoom extends Room<GameRoomState> {
                 let { vx, vy } = this.state.projectile;
                 this.state.projectile.x += vx * secDt;
                 this.state.projectile.y += vy * secDt;
-                this.state.projectile.vx += this.state.wind * secDt;
                 this.state.projectile.vy += -GameRoomConfig.GRAVITY * secDt;
 
                 if (this.state.projectile.y < 0) {
@@ -144,7 +143,6 @@ export class GameRoom extends Room<GameRoomState> {
         this.state.secondsLeft = GameRoomConfig.TIME_PER_TURN;
         //halt all player movement
         this.state.players.forEach(player => player.isMoving = false);
-        this.state.wind = 0;
         this.state.projectile = null;
     }
 }
