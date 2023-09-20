@@ -33,7 +33,7 @@ Navigate into `server` folder, then run server. By default, Colyseus server is d
 
 ```zsh
 cd server
-npm install
+npm start
 ```
 
 ## 2. Run client
@@ -46,9 +46,10 @@ npm install
 
 After run properly, the game will look like this:
 ![Game scene](assets/readme/img_1.png)
-![Game scene](assets/readme/img_2.png)
 
 ## How to play
-- 2 players will join the game. The first one plays as **Puffy** (blue Axie) and the other plays as **Pomodoro** (red Axie).
-- Players will try to hit each others, turn by turn. The first one throws a **tomato** right into the opponent, is the winner.
-- Players use their navigation keys (WASD or Arrows) to move their Axies. Hold **Space** to scale power and relase to fire.
+- 2 players will join the game. The first one plays as **Puffy** (cyan Axie) and the other plays as **Pomodoro** (red Axie).
+- Players will try to hit each other, turn by turn. The first one throws a **tomato** right into the opponent is the winner.
+- Use your navigation keys (**WASD** or **Arrows**) to move your Axie. Hold **Space** to scale power and relase to fire.
+
+![Game scene](assets/readme/img_2.png)
