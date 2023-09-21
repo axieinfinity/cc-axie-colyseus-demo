@@ -57,6 +57,7 @@ export class GameRoom extends Room<GameRoomState> {
                 break;
             }
         }
+        this.state.phase = GamePhase.ENDED;
     }
 
     handleStartMoveMsg(client: Client, msg: any) {
@@ -126,7 +127,7 @@ export class GameRoom extends Room<GameRoomState> {
             //check number of player alive, if there only one, announce winner
             let alivePlayers: string[] = [];
             this.state.players.forEach(player => {
-                if (player.isAlive == true) alivePlayers.push(player.sessionId);
+                if (player.isAlive) alivePlayers.push(player.sessionId);
             });
 
             if (alivePlayers.length == 1) {
